@@ -35,6 +35,7 @@ function PostStory(props){
 
     const onStoreChange = () => {
         var login=Store.getCreated()
+        
         var detail=Store.getDetail()
         setForm(detail)
         if(login){

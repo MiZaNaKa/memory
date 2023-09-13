@@ -216,8 +216,14 @@
 .searchBox{
     padding: 15px;
     width: 70%;
-    
 }
+
+.searchBoxAuthor{
+    padding: 15px;
+    width: 85%;
+}
+
+
 .searchButton{
     width: 10%;
     padding: 15px;

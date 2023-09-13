@@ -80,15 +80,22 @@ function StoryDetail (props){
     
 
     const sendCommentAPI=()=>{
-      setComment("")
-      var request={
-        comment:comment,
-        _id:props.params.id
+      if(comment){
+        setAction(false)
+        setNoteIndex('')
+        setComment("")
+        var request={
+          comment:comment,
+          _id:props.params.id
+        }
+        Action.sendComment(request)
       }
-      Action.sendComment(request)
+      
     }
 
     const deleteComment=(id)=>{
+      setAction(false)
+      setNoteIndex('')
       var request={
         id:props.params.id,
         commentID:id
@@ -98,15 +105,17 @@ function StoryDetail (props){
 
     const editComment=(id,index)=>{
       
-      var request={
-        id:props.params.id,
-        commentID:id,
-        comment:editCommentText
-      }
-      setEdit(false)
-      setEditIndex('')
-      
-      Action.editComment(request)
+      if(editCommentText){
+        var request={
+          id:props.params.id,
+          commentID:id,
+          comment:editCommentText
+        }
+        setEdit(false)
+        setEditIndex('')
+        
+        Action.editComment(request)
+      }     
     }
 
     const editCommentClick=(value,index)=>{
@@ -121,122 +130,136 @@ function StoryDetail (props){
     }
 
     const optionAction=(index)=>{
-      
       setAction(!action)
       setNoteIndex(index)
     }
 
+    const goAuthor=()=>{
+      props.navigation('/AuthorList/'+detail.userID)
+    }
+
+    
+
 
     return<div className='body'>
         <Header/>
-        <h1>{detail.title}</h1>
-        <br/>
-        <p className='storyContent'>{detail.text}</p>
-        <br/>
-        <br/>
-        <div>
 
-        
-        
-        
-        
-        {detail.like.length!== 0 ?
-          <div style={{marginBottom:20,marginTop:20}}>
-            
-            {love ?
-              <img onClick={likeUnlikeAction} src={Heart1} className='miniIcon'/>
-              :
+        <div className='header'>
+          
+          <h1>{detail.title}<a href="" onClick={goAuthor} style={{textDecoration:'none'}}><span style={{fontSize:11,color:'gray',marginLeft:20}}>{detail.name}</span></a> </h1>
+          <br/>
+          <p className='storyContent'>{detail.text}</p>
+          <br/>
+          <br/>
+          <div>
+
+          {detail.like.length!== 0 ?
+            <div style={{marginBottom:20,marginTop:20}}>
+              
+              {love ?
+                <img onClick={likeUnlikeAction} src={Heart1} className='miniIcon'/>
+                :
+                <img onClick={likeUnlikeAction} src={Heart} className='miniIcon'/>
+              }
+              {detail.like.length}
+            </div>
+            :
+            <div style={{marginBottom:20,marginTop:20}}>
               <img onClick={likeUnlikeAction} src={Heart} className='miniIcon'/>
-            }
-            {detail.like.length}
+            </div>
+            
+          }
           </div>
-          :
-          <img onClick={likeUnlikeAction} src={Heart} className='miniIcon'/>
-        }
-        </div>
-        <input value={comment} onChange={commentOnChange} className="commentInputBox" placeholder='write comment'/>
-        <button onClick={sendCommentAPI} className='buttonBox'>Send</button>
+          <input value={comment} onChange={commentOnChange} className="commentInputBox" placeholder='write comment'/>
+          <button onClick={sendCommentAPI} className='buttonBox'>Send</button>
 
-        
-        <div className='marginT'>
-          {detail.comment.map((value,index)=>{
-            return <div key={index} className='marginT'>
-                <div className='clearfix'>
-                  <div className='commentBox1'>
-                    <img src={value.profileImage} className="logoIcon"/>
-                  </div>
+          
+          <div className='marginT'>
+            {detail.comment.map((value,index)=>{
+              return <div key={index} className='marginT'>
+                  <div className='clearfix'>
+                    <div className='commentBox1'>
+                      <img src={value.profileImage} className="logoIcon"/>
+                    </div>
 
-                  <div className='commentBox2'>
-                    {/* <p>{value.userName}</p> */}
-                    {value.userName}
-                    <br/>
-                    <br/>
-                    {edit && editIndex===index ?
-                      <div>
-                        <input className="commentInputBox" onChange={editCommentOnChange} value={edit ? editCommentText: value.comments}/>
-                        <button onClick={()=>editComment(value._id)} className='updateButtonBox'>Update</button>
-                      </div>
+                    <div className='commentBox2'>
+                      {/* <p>{value.userName}</p> */}
+                      {value.userName}
+                      <br/>
+                      <br/>
+                      {edit && editIndex===index ?
+                        <div>
+                          <input className="commentInputBox" onChange={editCommentOnChange} value={edit ? editCommentText: value.comments}/>
+                          <button onClick={()=>editComment(value._id)} className='updateButtonBox'>Update</button>
+                        </div>
+                        
+                        :
+                        <div>
+                          {value.comments}
+                          <br/>
+                          <br/>
+                          {new Date(value.date).toLocaleString().replace(",","").replace(/:.. /," ")}
+                        
+                          {/* <p onClick={()=>editCommentClick(value.comments)}>Edit</p> */}
+                        </div>
+                      }
                       
-                      :
-                      <div>
-                        {value.comments}
-                        <br/>
-                        <br/>
-                        {new Date(value.date).toLocaleString().replace(",","").replace(/:.. /," ")}
-                       
-                        {/* <p onClick={()=>editCommentClick(value.comments)}>Edit</p> */}
-                      </div>
-                    }
-                    
 
-                    
+                      
 
-                    
+                      
+                    </div>
+
+                    <div className='commentBox3'>
+                      {/* <div>
+                        <p>{userInfo}</p>
+                      </div> */}
+                      
+
+                      {/* <p>nnn{value.userID}</p> */}
+
+                    {/* <img onClick={likeUnlikeAction} src={Option} className='miniIcon'/> */}
+
+                      {userInfo._id === value.userID ?
+                        <img onClick={()=>optionAction(index)} src={Option} className='miniIcon'/>
+                        :
+                        null
+                      }
+                      
+                      
+                      {action && index===noteIndex ?
+                        <div className='optionBox'>
+                          <a onClick={()=>deleteComment(value._id)} className='hover'>Delete</a>
+                          <br/>
+                          <br/>
+                          <a onClick={()=>editCommentClick(value.comments,index)} className='hover'>Edit</a>
+                          {/* <p onClick={()=>editCommentClick(value.comments)}>Edit</p> */}
+                        </div>
+                        :
+                        null
+                      }
+                      
+                      {/* <ul className='optionList'>
+                        <li><a href="#">Delete</a></li>
+                        <li><a href="#">Edit</a></li>
+                      </ul> */}
+                      {/* <p onClick={()=>deleteComment(value._id)}>Delete</p><br/>
+
+                      <p onClick={()=>editComment(value._id)}>Update</p> */}
+                    </div>
                   </div>
-
-                  <div className='commentBox3'>
-                    {/* <div>
-                      <p>{userInfo}</p>
-                    </div> */}
-                    
-
-                    {/* <p>nnn{value.userID}</p> */}
-
-                  {/* <img onClick={likeUnlikeAction} src={Option} className='miniIcon'/> */}
-
-                    {userInfo._id === value.userID ?
-                      <img onClick={()=>optionAction(index)} src={Option} className='miniIcon'/>
-                      :
-                      null
-                    }
-                    
-                    
-                    {action && index===noteIndex ?
-                      <div className='optionBox'>
-                        <a onClick={()=>deleteComment(value._id)} className='hover'>Delete</a>
-                        <br/>
-                        <br/>
-                        <a onClick={()=>editCommentClick(value.comments,index)} className='hover'>Edit</a>
-                        {/* <p onClick={()=>editCommentClick(value.comments)}>Edit</p> */}
-                      </div>
-                      :
-                      null
-                    }
-                    
-                    {/* <ul className='optionList'>
-                      <li><a href="#">Delete</a></li>
-                      <li><a href="#">Edit</a></li>
-                    </ul> */}
-                    {/* <p onClick={()=>deleteComment(value._id)}>Delete</p><br/>
-
-                    <p onClick={()=>editComment(value._id)}>Update</p> */}
-                  </div>
+                  
                 </div>
-                
-              </div>
-          })}
+            })}
+
+          </div>
+
+
+
+
 
         </div>
+        
         
         
         

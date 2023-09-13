@@ -6,6 +6,7 @@ import PostStory from "./component/PostStory";
 import Story from "./component/Story";
 import StoryAll from "./component/MyStoryList";
 import StoryDetail from "./component/StoryDetail";
+import Author from "./component/Author";
 import loginHelper from './jwtHelper/jwtHelper'
 
 function App() {
@@ -27,11 +28,13 @@ function App() {
   }, [])
   return (
       <div>
+        {/* <Author/> */}
         {user ?
           <Routes>
             <Route  path="/" element={<Story />}/>
             <Route path="/PostStory" element={<PostStory />} />
             <Route path="/PostStory/:id" element={<PostStory />} />
+            <Route path="/AuthorList/:id" element={<Author />} />
             
             
             <Route  path="/StoryDetail/:id" element={<StoryDetail />} />
@@ -45,6 +48,7 @@ function App() {
             <Route path="/SuccessfullyLogin/:id" element={<SuccessfullyLogin />} />
             <Route path="/" element={<Story />} />
           	<Route path="*" element={<Navigate to="/" />} />
+            
           </Routes>
 
         }
@@ -52,8 +56,8 @@ function App() {
           <Route  path="/" element={<Story />}/>
           <Route path="/PostStory" element={<PostStory />} />
           <Route path="/PostStory/:id" element={<PostStory />} />
-          <Route path="/SuccessfullyLogin" element={<SuccessfullyLogin />} />
-          
+          <Route path="/SuccessfullyLogin/:id" element={<SuccessfullyLogin />} />
+          <Route path="/AuthorList/:id" element={<Author />} />
           <Route  path="/StoryDetail/:id" element={<StoryDetail />} />
           <Route  path="/MyStoryList" element={<StoryAll />}/>
           

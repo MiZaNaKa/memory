@@ -4,6 +4,7 @@ import Action from "../action/SuccessfullyLoginAction"
 import Store from "../store/SuccessfullyLoginStore"
 import Header from "./Header"
 import withNavigateHook from '../common/Navigate'
+import Goal from "../img/goal.png"
 
 function Hello (props){
     let userId = useParams();
@@ -30,7 +31,10 @@ function Hello (props){
        
        
         if(login=='success'){
+            login=''
+            setLogin(login)
             props.navigation('/')
+            window.location.reload();
         }
     }
 
@@ -40,8 +44,9 @@ function Hello (props){
 
     return<div>
         <Header/>
-        <h1 onClick={test}>SuccessfullyLogin</h1>
-        <button title='onclick' onClick={test}>345345</button>
+        <div className='noDataBox'>
+            <img src={Goal} className='noData'/>
+        </div>
     </div>
 }
 
