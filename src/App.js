@@ -9,6 +9,8 @@ import StoryDetail from "./component/StoryDetail";
 import Author from "./component/Author";
 import loginHelper from './jwtHelper/jwtHelper'
 
+
+
 function App() {
   const [user, setUser] = React.useState(null);
   const navigate = useNavigate();
@@ -29,7 +31,7 @@ function App() {
   return (
       <div>
         {/* <Author/> */}
-        {user ?
+        {/* {user ?
           <Routes>
             <Route  path="/" element={<Story />}/>
             <Route path="/PostStory" element={<PostStory />} />
@@ -51,8 +53,12 @@ function App() {
             
           </Routes>
 
-        }
-        {/* <Routes>
+        } */}
+
+       
+
+
+        <Routes>
           <Route  path="/" element={<Story />}/>
           <Route path="/PostStory" element={<PostStory />} />
           <Route path="/PostStory/:id" element={<PostStory />} />
@@ -61,7 +67,7 @@ function App() {
           <Route  path="/StoryDetail/:id" element={<StoryDetail />} />
           <Route  path="/MyStoryList" element={<StoryAll />}/>
           
-        </Routes> */}
+        </Routes>
       </div>
   );
 }

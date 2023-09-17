@@ -62,6 +62,9 @@ class AuthorStore extends Store {
                         // this.checkData.check.push(true)
                     }
                 }
+                console.log(this.storyList)
+                console.log(this.storyList)
+                console.log(this.storyList)
             }
         }
         else if(action.type===Action.actionType.myStoryListPagination){
@@ -101,26 +104,28 @@ class AuthorStore extends Store {
                 this.checkData.selectedNo=0
             }
         }
-        else if(action.type===Action.actionType.clickCheck){
-            this.storyList[action.data.index].check=action.data.data
-            this.checkData.check[action.data.index]=action.data.data
-            const filtered = this.checkData.check.filter(check => check == true);
-            if(filtered !=0){
-                this.checkData.selectedNo=filtered.length
-                if(this.checkData.check.length ==filtered.length){
-                    this.checkData.checkAll=action.data.data
-                }
-            }
-            else{
-                this.checkData.selectedNo=0
-            }
+        // else if(action.type===Action.actionType.clickCheck){
+        //     console.log(this.storyList)
+        //     console.log(this.storyList)
+        //     this.storyList[action.data.index].check=action.data.data
+        //     this.checkData.check[action.data.index]=action.data.data
+        //     const filtered = this.checkData.check.filter(check => check == true);
+        //     if(filtered !=0){
+        //         this.checkData.selectedNo=filtered.length
+        //         if(this.checkData.check.length ==filtered.length){
+        //             this.checkData.checkAll=action.data.data
+        //         }
+        //     }
+        //     else{
+        //         this.checkData.selectedNo=0
+        //     }
             
-            var all=JSON.parse(JSON.stringify(this.storyList))
-            var allTemp=JSON.parse(JSON.stringify(this.tempoData))
-            this.storyList=all
-            this.tempoData=allTemp
+        //     var all=JSON.parse(JSON.stringify(this.storyList))
+        //     var allTemp=JSON.parse(JSON.stringify(this.tempoData))
+        //     this.storyList=all
+        //     this.tempoData=allTemp
 
-        }
+        // }
         else if(action.type===Action.actionType.checkAllAction){
             this.tempoData.checkAll=!this.tempoData.checkAll
             this.checkData.check=[]

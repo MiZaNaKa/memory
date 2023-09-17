@@ -17,6 +17,9 @@ function PostStory(props){
           if(data){
             setUserInfo(data)
           }
+          else{
+            props.navigation('/')
+          }
         }
       
         // call the function

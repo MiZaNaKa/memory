@@ -44,6 +44,21 @@ class MyStoryListStore extends Store {
                   
                 if(action.data.data.success.data.success.data.length===0){
                     this.storyList=[]
+                    this.checkData={
+                        check:[],
+                        checkAll:false,
+                        pickerValue:[],
+                        selectedNo:0,
+                    }
+                    this.tempoData={
+                        current:1,
+                        listAll:[],
+                        ListPagination:[],
+                        offset: 0,
+                        data: [],
+                        perPage: 3,
+                        currentPage: 0
+                    }
                     
                 }
                 else{
@@ -65,7 +80,9 @@ class MyStoryListStore extends Store {
             }
             
             else{
-                // this.storyList=false
+                console.log("hello error")
+                console.log("hello error")
+                console.log("hello error")
             }
         }
         else if(action.type===Action.actionType.myStoryListPagination){
@@ -106,6 +123,7 @@ class MyStoryListStore extends Store {
             }
         }
         else if(action.type===Action.actionType.clickCheck){
+           
             this.storyList[action.data.index].check=action.data.data
             this.checkData.check[action.data.index]=action.data.data
             const filtered = this.checkData.check.filter(check => check == true);
@@ -113,6 +131,9 @@ class MyStoryListStore extends Store {
                 this.checkData.selectedNo=filtered.length
                 if(this.checkData.check.length ==filtered.length){
                     this.checkData.checkAll=action.data.data
+                }
+                else{
+                    this.checkData.checkAll=false
                 }
             }
             else{
@@ -126,11 +147,13 @@ class MyStoryListStore extends Store {
 
         }
         else if(action.type===Action.actionType.checkAllAction){
-            this.tempoData.checkAll=!this.tempoData.checkAll
+            console.log(this.checkData.checkAll)
+            console.log(this.checkData.checkAll)
+            this.checkData.checkAll=!this.checkData.checkAll
             this.checkData.check=[]
             
             for (i = 0; i < this.storyList.length; i++) {
-                this.checkData.check.push(this.tempoData.checkAll)
+                this.checkData.check.push(this.checkData.checkAll)
             }
             const filtered = this.checkData.check.filter(check => check == true);
             
@@ -142,8 +165,8 @@ class MyStoryListStore extends Store {
                 this.checkData.selectedNo=0
             }
            
-            var allTemp=JSON.parse(JSON.stringify(this.tempoData))
-            this.tempoData=allTemp
+            var allTemp=JSON.parse(JSON.stringify(this.checkData))
+            this.checkData=allTemp
         }
 
         else{

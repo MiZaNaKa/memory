@@ -99,41 +99,41 @@ function Author (props){
       Action.getMyStoryList(query)
     }
 
-    const clickCheck=(index)=>{
+    // const clickCheck=(index)=>{
       
-      var request={
-        index:index,
-        data:false
-      }
+    //   var request={
+    //     index:index,
+    //     data:false
+    //   }
 
       
-      if(checkData.check[index]){
-        request.data=false
+    //   if(checkData.check[index]){
+    //     request.data=false
        
-      }
-      else{
-        request.data=true
+    //   }
+    //   else{
+    //     request.data=true
        
-      }
+    //   }
 
 
-      var checkArray=checkData.check
-      if(checkArray!=undefined){
-          const filtered = checkArray.filter(check => check == true);
+    //   var checkArray=checkData.check
+    //   if(checkArray!=undefined){
+    //       const filtered = checkArray.filter(check => check == true);
 
-          if(filtered != 0 && filtered.length>1){
-              setShow(true)
-          }
-          else if(filtered==0 && request.data==true){
-            setShow(true)
-          }
-          else if(filtered.length==1 && request.data==false){
-            setShow(false)
-          }
-      }
+    //       if(filtered != 0 && filtered.length>1){
+    //           setShow(true)
+    //       }
+    //       else if(filtered==0 && request.data==true){
+    //         setShow(true)
+    //       }
+    //       else if(filtered.length==1 && request.data==false){
+    //         setShow(false)
+    //       }
+    //   }
       
-      Action.clickCheck(request)
-    }
+    //   Action.clickCheck(request)
+    // }
 
     
 
@@ -217,7 +217,7 @@ function Author (props){
         <div className='header'>
 
           <input value={query.search} onChange={searchQueryOnChange} className="searchBoxAuthor" placeholder='search title'/>
-          <button onClick={searchQueryAPI}  className='searchButton'>Send</button>
+          <button onClick={searchQueryAPI}  className='AuthorSearchButton'>Send</button>
           {/* <select value={pickerSelected} className='pickerBox' name='item-selected' onChange={(e)=>queryStatusOnChange(e)}>
             <option value="1">Action</option>
             <option value="2">Popular</option>
