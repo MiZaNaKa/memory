@@ -49,6 +49,24 @@
     height: 50px;
 }
 
+.logoIcon:hover{
+    cursor: pointer;
+}
+
+.menuClose{
+    width:30px;
+    height:30px;
+    margin-right:5px;
+    margin-bottom:30px
+}
+.menuClose:hover{
+    width:30px;
+    height:30px;
+    margin-right:5px;
+    margin-bottom:30px;
+    cursor: pointer;
+}
+
 
 .link{
     color: black;

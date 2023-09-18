@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 import React, {  useEffect,useState} from 'react';
 import Logo from "../img/podcast.png"
 import Google from "../img/google.png"
+
 import loginHelper from '../jwtHelper/jwtHelper'
+import Drawer from 'react-modern-drawer'
+import Close from "../img/close.png"
+import 'react-modern-drawer/dist/index.css'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 
@@ -20,6 +24,12 @@ function Home(){
         getUserInfo()
           .catch(console.error);
     }, [])
+
+    const [isOpen, setIsOpen] = React.useState(false)
+    const toggleDrawer = () => {
+        setIsOpen((prevState) => !prevState)
+    }
+
 
     
     const logOut=async()=>{
@@ -58,31 +68,40 @@ function Home(){
                 } */}
 
                 {userInfo ?
-                    <ul>
-                        <li id="visible">
-                            <img src={userInfo.profileImage} className="logoIcon"/>
-                            <ul id="hidden">
-                                <li style={{marginBottom:10}}>
-                                    <Link  className="link" to="/MyStoryList">
-                                        My Story
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link className="link" to="/PostStory">
-                                        Post Story
-                                    </Link>
-                                </li>
-                                
-                                <li><p onClick={logOut} className="logout">Log Out</p></li>
-                            
-                            </ul>
-                        </li>
-                    </ul>
+                    <img onClick={toggleDrawer} src={userInfo.profileImage} className="logoIcon"/>
                     :
                     <a href='http://localhost:3000/users/auth/google'>
                         <img src={Google} className="logoIcon"/>
                     </a>
                 }
+
+                
+                <Drawer
+                    open={isOpen}
+                    onClose={toggleDrawer}
+                    direction='left'
+                    className='bla bla bla'
+                >
+                    <div style={{marginTop:40}}>
+                        <img onClick={toggleDrawer}  src={Close} className="menuClose"/>
+                        <div style={{marginBottom:25,textAlign:'center'}}>
+                            <Link  className="link" to="/MyStoryList">
+                                My Story
+                            </Link>
+                        </div>
+
+                        <div style={{marginBottom:25,textAlign:'center'}}>
+                            <Link className="link" to="/PostStory">
+                                Post Story
+                            </Link>
+                        </div>
+
+                        <div style={{marginBottom:25,textAlign:'center'}}>
+                            <p onClick={logOut} className="logout">Log Out</p>
+                        </div>
+                        
+                    </div>
+                </Drawer>
                 
                 
             </div>
