@@ -171,7 +171,7 @@ function StoryDetail (props){
           }
           </div>
           <input value={comment} onChange={commentOnChange} className="commentInputBox" placeholder='write comment'/>
-          <button onClick={sendCommentAPI} className='buttonBox'>Send</button>
+          <button onClick={sendCommentAPI} className='buttonBox'>Save</button>
 
           
           <div className='marginT'>

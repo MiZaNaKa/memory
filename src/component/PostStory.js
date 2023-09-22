@@ -76,13 +76,6 @@ function PostStory(props){
       }
     }
 
-
-    
-
-    
-
-    
-
     return <div>
         <Header/>
         <div className="form">

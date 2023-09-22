@@ -47,8 +47,7 @@ function MyStoryList (props){
       var list=Store.getStoryList()
       var tempoData=Store.getTempoData()
       var checkData=Store.getCheckData()
-      console.log(list)
-      console.log(list)
+      
       setCheckData(checkData)
       setList(list)
       setTempoData(tempoData)
@@ -87,10 +86,12 @@ function MyStoryList (props){
     const queryStatusOnChange = (e,index,id) => {
       setPickerSelected(e.target.value)
       setQuery(prevState => ({
-        ...prevState,
-        status: e.target.value
+        // ...prevState,
+        status: e.target.value,
+        search:''
       }));
       setShow(false)
+      
       
       var request={
         status:e.target.value,

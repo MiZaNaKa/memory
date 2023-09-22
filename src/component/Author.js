@@ -6,7 +6,7 @@ import ReactPaginate from 'react-paginate';
 import withNavigateHook from '../common/Navigate'
 import StyleIt from 'style-it';
 import noData from "../img/noData.png"
-
+import loginHelper from '../jwtHelper/jwtHelper'
 
 
 
@@ -23,7 +23,16 @@ function Author (props){
     const [show, setShow] = useState(false)
     const [checkData, setCheckData] = useState(Store.getCheckData())
 
-    
+    useEffect(() => {
+      const getUserInfo = async () => {
+        const data = await loginHelper.UserInfo()
+        if(!data){
+          props.navigation('/')
+        }
+      }
+      getUserInfo()
+        .catch(console.error);
+    }, [])
     
     useEffect(() => {
       Action.getAuthorList(query)
@@ -96,7 +105,7 @@ function Author (props){
     }
 
     const searchQueryAPI=()=>{
-      Action.getMyStoryList(query)
+      Action.getAuthorList(query)
     }
 
     // const clickCheck=(index)=>{
@@ -217,7 +226,7 @@ function Author (props){
         <div className='header'>
 
           <input value={query.search} onChange={searchQueryOnChange} className="searchBoxAuthor" placeholder='search title'/>
-          <button onClick={searchQueryAPI}  className='AuthorSearchButton'>Send</button>
+          <button onClick={searchQueryAPI}  className='AuthorSearchButton'>Search</button>
           {/* <select value={pickerSelected} className='pickerBox' name='item-selected' onChange={(e)=>queryStatusOnChange(e)}>
             <option value="1">Action</option>
             <option value="2">Popular</option>
