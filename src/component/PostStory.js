@@ -86,9 +86,9 @@ function PostStory(props){
             <br/>
             <br/>
             {id ?
-              <button className='buttonBox' onClick={EditStory}>Edit</button>
+              <button className='buttonBox1' onClick={EditStory}>Edit</button>
               :
-              <button className='buttonBox' onClick={submit}>Save</button>
+              <button className='buttonBox1' onClick={submit}>Save</button>
             }
             
         </div>

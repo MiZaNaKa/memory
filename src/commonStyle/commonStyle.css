@@ -115,6 +115,15 @@ input{
     padding: 2.11% 1%;
 }
 
+.buttonBox1{
+    width: 26%;
+    padding: 2% 0px;
+}
+.buttonBox1:hover{
+    width: 26%;
+    padding: 2% 0px;
+}
+
 .form{
     width: 50%;
     margin: 0 auto;
@@ -477,6 +486,17 @@ ul {
         width: 16%;
         padding: 2% 0px;
     }
+
+    .buttonBox1{
+        width: 26%;
+        padding: 2% 0px;
+    }
+    .buttonBox1:hover{
+        width: 26%;
+        padding: 2% 0px;
+    }
+
+    
     .commentBox1{
         width: 20%;
         float: left;
