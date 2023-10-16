@@ -82,7 +82,7 @@ function PostStory(props){
             <input onChange={titleOnChange} className="inputBox" type="text" value={form.title}/><br/>
             <br/>
             <br/>
-            <textarea onChange={areaOnChange} value={form.text} rows="25" cols="100"></textarea>
+            <textarea onChange={areaOnChange} value={form.text} rows="8" cols="100"></textarea>
             <br/>
             <br/>
             {id ?

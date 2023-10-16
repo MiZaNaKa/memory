@@ -70,10 +70,13 @@ function Home(){
                 {userInfo ?
                     <img onClick={toggleDrawer} src={userInfo.profileImage} className="logoIcon"/>
                     :
-                    <a href='http://localhost:3000/users/auth/google'>
+                    <a style={{textDecoration:'none'}} href='http://localhost:3000/users/auth/google'>
                         <img src={Google} className="logoIcon"/>
+                        <p style={{fontSize:14,color:'red'}}>Login</p>
                     </a>
                 }
+
+                
 
                 
                 <Drawer
