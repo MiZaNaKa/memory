@@ -47,7 +47,6 @@ input{
     display: block;
 }
 
-
 .userInfo{
     width: 20%;
     float: right;
@@ -55,6 +54,7 @@ input{
     text-align: right;
     
 }
+
 
 .logoIcon{
     width: 50px;
@@ -118,16 +118,47 @@ input{
 .buttonBox1{
     width: 26%;
     padding: 2% 0px;
+    transition: background-color 2s ease-out 100ms
 }
 .buttonBox1:hover{
     width: 26%;
     padding: 2% 0px;
+    background-color: #000;
+    color: #fff;
+    border-radius: 19px;
+    background-image: linear-gradient(90deg,#52a0fd 0,#00e2fa 51%,#52a0fd);
+    transform: scale(.88);
+}
+
+.test {
+    width: 20%;
+    height: 50px;
+    background: #fff;
+    transition: background-color 1s ease-out 100ms;
+    border: 1px solid #000;
+}
+  
+.test:hover {
+    background-color: #000;
+    color: #fff;
 }
 
 .form{
     width: 50%;
     margin: 0 auto;
+    position: relative;
+}
 
+.modal{
+    width: 150px;
+    margin: 0 auto;
+    position: absolute;
+    top: 20%;
+    border: 1px solid #000;
+    text-align: center;
+    margin-left: 50%;
+    margin-right: 50%;
+    
 }
 
 .storyContent{

@@ -5,6 +5,7 @@ import Action from '../action/PostStoryAction'
 import Store from '../store/PostStoryStore'
 import withNavigateHook from '../common/Navigate'
 import '../commonStyle/commonStyle.css'
+import Load from "../img/loading.gif"
 function PostStory(props){
     var detail=Store.getDetail()
     var id =props.params.id
@@ -86,10 +87,17 @@ function PostStory(props){
             <br/>
             <br/>
             {id ?
-              <button className='buttonBox1' onClick={EditStory}>Edit</button>
+              <button className='test' onClick={EditStory}>Edit</button>
               :
-              <button className='buttonBox1' onClick={submit}>Save</button>
+              <button className='test' onClick={submit}>Save</button>
             }
+
+            {/* <div className='modal'>
+              <img src={Load} className='noData'/>
+            </div> */}
+
+            {/* <button className='test' onClick={submit}>Save</button> */}
+            
             
         </div>
     </div>
