@@ -113,6 +113,47 @@ input{
 .buttonBox{
     width: 6%;
     padding: 2.11% 1%;
+    /* height: 50px; */
+    background: #fff;
+    transition: background-color 1s ease-out 100ms;
+    border: 1px solid #000;
+}
+
+.buttonBox:hover{
+    width: 6%;
+    padding: 2.2% 1%;
+    cursor: pointer;
+    background-color: #000;
+    color: #fff;
+}
+
+.postActionButton {
+    width: 20%;
+    height: 50px;
+    background: #fff;
+    transition: background-color 1s ease-out 100ms;
+    border: 1px solid #000;
+}
+  
+.postActionButton:hover {
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+.closeButton {
+    width: 40%;
+    height: 50px;
+    background: #fff;
+    transition: background-color 1s ease-out 100ms;
+    border: 1px solid #000;
+}
+  
+.closeButton:hover {
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
 }
 
 .buttonBox1{
@@ -130,18 +171,7 @@ input{
     transform: scale(.88);
 }
 
-.test {
-    width: 20%;
-    height: 50px;
-    background: #fff;
-    transition: background-color 1s ease-out 100ms;
-    border: 1px solid #000;
-}
-  
-.test:hover {
-    background-color: #000;
-    color: #fff;
-}
+
 
 .form{
     width: 50%;
@@ -158,6 +188,8 @@ input{
     text-align: center;
     margin-left: 50%;
     margin-right: 50%;
+    padding:20px;
+    background-color: #fff;
     
 }
 
@@ -189,11 +221,7 @@ input{
     cursor: pointer;
 }
 
-.buttonBox:hover{
-    width: 6%;
-    padding: 2% 0px;
-    cursor: pointer;
-}
+
 
 .miniIcon{
     width: 30;
@@ -295,7 +323,7 @@ input{
 
 .searchButton{
     width: 10%;
-    padding: 2%;
+    padding: 2.1%;
     margin-right: 2%;
 }
 .pickerBox{

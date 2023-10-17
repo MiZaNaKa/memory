@@ -8,9 +8,22 @@ class PostStoryAction{
         this.actionType.getMyDetailStory="getMyDetailStory"
 
         this.actionType.editStoryAction="editStoryAction"
+        this.actionType.IconAction="IconAction"
+        this.actionType.clearNCloseInStory="clearNCloseInStory"
 
         
+
     }
+
+    IconAction = async (value) => {
+		dispatcher.dispatch({ type: this.actionType.IconAction, data: value });
+	}
+
+    clearNCloseInStory = async (value) => {
+		dispatcher.dispatch({ type: this.actionType.clearNCloseInStory, data: value });
+	}
+
+    
    
 
     postStoryAction =async(request)=>{

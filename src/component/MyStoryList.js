@@ -231,7 +231,7 @@ function MyStoryList (props){
         <div className='header'>
 
           <input value={query.search} onChange={searchQueryOnChange} className="searchBox" placeholder='write comment'/>
-          <button onClick={searchQueryAPI}  className='searchButton'>Send</button>
+          <button onClick={searchQueryAPI}  className='searchButton'>Search</button>
           <select value={pickerSelected} className='pickerBox' name='item-selected' onChange={(e)=>queryStatusOnChange(e)}>
             <option value="1">Pending</option>
             <option value="2">Approve</option>

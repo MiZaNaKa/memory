@@ -12,7 +12,15 @@ class PostStoryStore extends Store {
             "text" : "",
             "title" : "",
         }
+        this.tempoData={
+            loading:false,
+            success:false
+        }
         
+    }
+
+    getTempoData=()=>{
+        return this.tempoData
     }
 
     getDetail=()=>{
@@ -27,10 +35,14 @@ class PostStoryStore extends Store {
        
         if(action.type===Action.actionType.postStoryAction){
             if(action.data.ok){
-                this.created=true
+                // this.created=true
+                this.tempoData.loading=false
+                this.tempoData.success=true
             }
             else{
-                this.created=false
+                // this.created=false
+                this.tempoData.loading=false
+                this.tempoData.success=false
             }
         }
         else if(action.type===Action.actionType.getMyDetailStory){
@@ -38,6 +50,19 @@ class PostStoryStore extends Store {
                 this.detail=action.data.data.success.data.success.data
             }
         }
+        else if(action.type===Action.actionType.IconAction){
+            this.tempoData.loading=true
+        }
+
+        else if(action.type===Action.actionType.clearNCloseInStory){
+            this.tempoData.loading=false
+            this.tempoData.success=false
+            this.created=true
+        }
+
+        
+
+        
 
         
       
