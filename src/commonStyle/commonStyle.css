@@ -36,11 +36,6 @@ input{
     height: 30px;
     margin-top: 10px;
 }
-
-.headerBox{
-    width: 100%;
-}
-
 .logo1{
     width: 5%;
     float: left;
@@ -52,6 +47,12 @@ input{
     float: left;
     display: block;
 }
+
+.headerBox{
+    width: 100%;
+}
+
+
 
 .logo{
     width: 20%;
