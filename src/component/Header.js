@@ -7,6 +7,7 @@ import Google from "../img/google.png"
 import loginHelper from '../jwtHelper/jwtHelper'
 import Drawer from 'react-modern-drawer'
 import Close from "../img/close.png"
+import Menu from "../img/menu.png"
 import 'react-modern-drawer/dist/index.css'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons'
@@ -41,11 +42,17 @@ function Home(){
 
     return <div className="header">
         <div className="headerBox clearfix">
-            <div className="logo">
+            <div className="logo1">
+                <Link className="link" to="/">
+                    <img onClick={toggleDrawer} src={Menu} className="menuIcon"/>
+                </Link>
+            </div>
+            <div className="logo2">
                 <Link className="link" to="/">
                     <img src={Logo} className="logoIcon"/>
                 </Link>
             </div>
+            
     
             <div className="headercontent">
                 
@@ -68,7 +75,7 @@ function Home(){
                 } */}
 
                 {userInfo ?
-                    <img onClick={toggleDrawer} src={userInfo.profileImage} className="logoIcon"/>
+                    <img  src={userInfo.profileImage} className="logoIcon"/>
                     :
                     <a style={{textDecoration:'none'}} href='http://localhost:3000/users/auth/google'>
                         <img src={Google} className="logoIcon"/>
