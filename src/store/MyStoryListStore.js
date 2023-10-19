@@ -39,8 +39,19 @@ class MyStoryListStore extends Store {
        
         if(action.type===Action.actionType.getMyStoryList){
             if(action.data.ok){
+                this.tempoData={
+                    current:1,
+                    listAll:[],
+                    ListPagination:[],
+                    offset: 0,
+                    data: [],
+                    perPage: 3,
+                    currentPage: 0
+                }
                 
                 this.tempoData.ListPagination=action.data.data.success.data.success.data
+
+                
                   
                 if(action.data.data.success.data.success.data.length===0){
                     this.storyList=[]

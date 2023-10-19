@@ -62,6 +62,8 @@ function MyStoryList (props){
    
 
     const handleChange = (e,index,id) => {
+      setCurrentPage(0)
+      setOffset(0)
       setPickerSelected('1')
       setQuery(prevState => ({
         ...prevState,
@@ -109,6 +111,8 @@ function MyStoryList (props){
     }
 
     const searchQueryAPI=()=>{
+      setCurrentPage(0)
+      setOffset(0)
       Action.getMyStoryList(query)
     }
 
@@ -275,10 +279,9 @@ function MyStoryList (props){
                           <option value="2">Edit</option>
                           <option value="3">Detail</option>
                           <option value="4">Delete</option>
-                          {pickerSelected!=='2' && pickerSelected!== 2 ? <option value="5">Only Me</option>: null}
+                          {pickerSelected=='2' ||  pickerSelected== '1' ? <option value="5">Only Me</option>: null}
                         
-                        
-                          {pickerSelected!=='3' && pickerSelected!== 3 && pickerSelected!=='1' && pickerSelected!== 1  ? <option value="7">Publish</option>: null}
+                          {pickerSelected=='3' ? <option value="7">Publish</option>: null}
                           
                         </select>
 
@@ -310,8 +313,8 @@ function MyStoryList (props){
                           <option value="2">Edit</option>
                           <option value="3">Detail</option>
                           <option value="4">Delete</option>
-                          {pickerSelected!=='2' && pickerSelected!== 2 ? <option value="5">Only Me</option>: null}
-                          {pickerSelected!=='3' && pickerSelected!== 3 && pickerSelected!=='1' && pickerSelected!== 1  ? <option value="7">Publish</option>: null}
+                          {pickerSelected=='2' ||  pickerSelected== '1' ? <option value="5">Only Me</option>: null}
+                          {pickerSelected=='3' ? <option value="7">Publish</option>: null}
                         </select>
 
                       </div>
