@@ -45,7 +45,7 @@ function Home(){
             {userInfo ?
                 <div>
                     <div className="logo1">
-                        <Link className="link" to="/">
+                        <Link className="link">
                             <img onClick={toggleDrawer} src={Menu} className="menuIcon"/>
                         </Link>
                     </div>
