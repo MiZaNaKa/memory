@@ -41,6 +41,7 @@ function Home(){
 
 
     return <div className="header">
+        
         <div className="headerBox clearfix">
             {userInfo ?
                 <div>
