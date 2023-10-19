@@ -10,10 +10,13 @@ class PostStoryAction{
         this.actionType.editStoryAction="editStoryAction"
         this.actionType.IconAction="IconAction"
         this.actionType.clearNCloseInStory="clearNCloseInStory"
-
+        this.actionType.clearAllStoryPostNEdit="clearAllStoryPostNEdit"
         
-
+        
     }
+    clearAllStoryPostNEdit = async (value) => {
+		dispatcher.dispatch({ type: this.actionType.clearAllStoryPostNEdit, data: value });
+	}
 
     IconAction = async (value) => {
 		dispatcher.dispatch({ type: this.actionType.IconAction, data: value });

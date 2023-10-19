@@ -18,6 +18,18 @@ class PostStoryStore extends Store {
         }
         
     }
+    clearAll=()=>{
+        this.created=false
+        this.detail={
+           
+            "text" : "",
+            "title" : "",
+        }
+        this.tempoData={
+            loading:false,
+            success:false
+        }
+    }
 
     getTempoData=()=>{
         return this.tempoData
@@ -59,6 +71,14 @@ class PostStoryStore extends Store {
             this.tempoData.success=false
             this.created=true
         }
+
+        else if(action.type===Action.actionType.clearAllStoryPostNEdit){
+            this.tempoData.loading=false
+            this.tempoData.success=false
+            this.created=true
+        }
+
+        
 
         
 

@@ -23,10 +23,10 @@ const customStyles = {
 
 
 function PostStory(props){
+    Store.clearAll()
     var detail=Store.getDetail()
     var tempoDataAll=Store.getTempoData()
 
-    
     var id =props.params.id
     const[userInfo,setUserInfo]=useState('')
     const[form,setForm]=useState(detail)
@@ -71,6 +71,7 @@ function PostStory(props){
         setForm(detail)
        
         if(login){
+          // Action.clearAllStoryPostNEdit()
           props.navigation('/')
         }
     }
