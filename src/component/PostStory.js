@@ -37,9 +37,9 @@ function PostStory(props){
           if(data){
             setUserInfo(data)
           }
-          else{
-            props.navigation('/')
-          }
+          // else{
+          //   props.navigation('/')
+          // }
         }
       
         // call the function
@@ -141,9 +141,9 @@ function PostStory(props){
             <br/>
             <br/>
             {tempoData.loading ?
-              <textarea  disabled onChange={areaOnChange} value={form.text} rows="8" cols="100"></textarea>
+              <textarea  disabled onChange={areaOnChange} value={form.text} rows="5" cols="100"></textarea>
               :
-              <textarea  onChange={areaOnChange} value={form.text} rows="8" cols="100"></textarea>
+              <textarea style={{paddingLeft:15}} onChange={areaOnChange} value={form.text} rows="5" cols="100"></textarea>
             }
             
             <br/>

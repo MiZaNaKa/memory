@@ -49,11 +49,6 @@ function Story (props){
               })}
             </div>
           }
-
-          
-          
-          
-
         </div>
         
     </div>

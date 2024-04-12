@@ -27,7 +27,7 @@ function MyStoryList (props){
       const getUserInfo = async () => {
         const data = await loginHelper.UserInfo()
         if(!data){
-          props.navigation('/')
+          // props.navigation('/')
         }
       }
       getUserInfo()

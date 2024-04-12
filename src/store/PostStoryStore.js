@@ -9,8 +9,8 @@ class PostStoryStore extends Store {
         this.created=false
         this.detail={
            
-            "text" : "",
-            "title" : "",
+            "email" : "",
+            "password" : "",
         }
         this.tempoData={
             loading:false,
@@ -22,8 +22,8 @@ class PostStoryStore extends Store {
         this.created=false
         this.detail={
            
-            "text" : "",
-            "title" : "",
+            "email" : "",
+            "password" : "",
         }
         this.tempoData={
             loading:false,

@@ -8,18 +8,22 @@ import loginHelper from '../jwtHelper/jwtHelper'
 import Drawer from 'react-modern-drawer'
 import Close from "../img/close.png"
 import Menu from "../img/menu.png"
+import User from "../img/user.png"
 import 'react-modern-drawer/dist/index.css'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 
 import '../commonStyle/commonStyle.css'
 function Home(){
+    const[name,setName]=useState('')
     const[userInfo,setUserInfo]=useState('')
     useEffect(() => {
         const getUserInfo = async () => {
           const data = await loginHelper.UserInfo()
           if(data){
             setUserInfo(data)
+            const myArray = data.name.split(" ")
+            setName(myArray[0])
           }
         }
         getUserInfo()
@@ -87,13 +91,28 @@ function Home(){
                 } */}
 
                 {userInfo ?
-                    <img  src={userInfo.profileImage} className="logoIcon"/>
+                    <div>
+                        {userInfo.profileImage ? 
+                            <div>
+                                <img  src={userInfo.profileImage} className="logoIcon"/>
+                            </div>
+                            :
+                            <img  src={User} className="logoIcon"/>
+                        }
+                        <p>{name}</p>
+                    </div>
+                    
                     :
-                    <a style={{textDecoration:'none'}} href='http://localhost:3000/users/auth/google'>
-                        <img src={Google} className="logoIcon"/>
-                        <p style={{fontSize:14,color:'red'}}>Login</p>
-                    </a>
+                    <div>
+                        {/* <a style={{textDecoration:'none'}} href='http://localhost:3000/users/auth/google'>
+                            <img src={Google} className="logoIcon"/>
+                            <p style={{fontSize:14,color:'red'}}>Login</p>
+                        </a> */}
+                    </div>
+                    
                 }
+
+                
 
                 
 

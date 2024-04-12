@@ -32,14 +32,22 @@ input{
 }
 
 .menuIcon{
-    width: 30px;
-    height: 30px;
+    width: 22px;
+    height: 22px;
     margin-top: 10px;
 }
 .logo1{
     width: 5%;
     float: left;
     display: block;
+}
+
+.row{
+    display: ruby;
+}
+
+.showPassword{
+    margin-left: 15px;
 }
 
 .logo2{
@@ -52,7 +60,11 @@ input{
     width: 100%;
 }
 
-
+.showPass{
+    width: 15px;
+    height: 15px;
+    border: 1px solid #000;
+}
 
 .logo{
     width: 20%;
@@ -76,8 +88,8 @@ input{
 
 
 .logoIcon{
-    width: 50px;
-    height: 50px;
+    width: 35px;
+    height: 35px;
 }
 
 .logoIcon:hover{
