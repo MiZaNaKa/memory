@@ -4,7 +4,6 @@ import API from '../api/customAxios';
 class CreateAccountAction{
     constructor(){
         this.actionType={}
-        this.actionType.LoginAction="LoginAction"
         this.actionType.getOtpForCreateAcc="getOtpForCreateAcc"
         this.actionType.createAccountAPI="createAccountAPI"
         this.actionType.emailOnChangeInCreateAcc="emailOnChangeInCreateAcc"
@@ -30,31 +29,7 @@ class CreateAccountAction{
 		dispatcher.dispatch({ type: this.actionType.rePasswordOnChange, data: value });
 	}
 
-    LoginAction =async(request)=>{
-        
-        try{
-            var response={
-                data:[],
-                ok:false
-            }
-            
-            var res = await API.post(`users/login`,request)
-            if(res.data.ok){
-                response.ok=true
-                response.data=res.data
-            }
-            else{
-                response.ok=false
-                response.data="Email or Password is wrong"
-            }
-        }
-        catch(e){
-            response.ok=false
-            response.data=e.message
-        }
-        dispatcher.dispatch({type:this.actionType.LoginAction,data:response})
-        
-    }
+
 
     getOtpForCreateAcc =async(email)=>{
         try{
@@ -91,8 +66,7 @@ class CreateAccountAction{
             }
             
             var res = await API.post(`users/verifyOTPNCreateAcc`,value)
-            console.log(res)
-            console.log(res)
+           
             if(res.data.ok){
                 response.ok=true
                 response.data=res.data.data

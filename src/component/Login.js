@@ -1,4 +1,4 @@
-import React, {  useEffect,useState} from 'react';
+import React, {  useEffect,useState,useRef } from 'react';
 import Header from "./Header"
 import { Link } from "react-router-dom";
 import loginHelper from '../jwtHelper/jwtHelper'
@@ -6,42 +6,30 @@ import Action from '../action/LoginAction'
 import Store from '../store/loginStore'
 import withNavigateHook from '../common/Navigate'
 import '../commonStyle/commonStyle.css'
-import { Bars } from 'react-loading-icons'
-import Load from "../img/loading.gif"
 import Google from "../img/google.png"
 import Gmail from "../img/gmail.png"
-import Modal from 'react-modal';
-
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-  },
-};
+import SimpleReactValidator from 'simple-react-validator';
 
 
 function Login(props){
-    // Store.clearAll()
     var detail=Store.getDetail()
     var tempoDataAll=Store.getTempoData()
-
-    var id =props.params.id
-    const[userInfo,setUserInfo]=useState('')
     const[form,setForm]=useState(detail)
     const[tempoData,setTempoData]=useState(tempoDataAll)
-    
+    const simpleValidator = useRef(new SimpleReactValidator());
+    const [, forceUpdate] = useState();
 
     useEffect(() => {
       Store.addListener(onStoreChange)
-      if(id){
-        Action.getMyDetailStory(id)
+      const getUserInfo = async () => {
+        const data = await loginHelper.UserInfo()
+        if(data){
+          props.navigation('/')
+        }
       }
-      
-    }, []);
+      getUserInfo()
+        .catch(console.error);
+  }, [])
 
     const onStoreChange = () => {
         var tempoDataAll=Store.getTempoData()  
@@ -49,12 +37,13 @@ function Login(props){
           props.navigation('/')
         }
         else{
-          setTempoData(tempoDataAll)
+          setTempoData({ ...tempoData, message: tempoDataAll.message });
         }
     }
 
 
     const emailOnChange=(value)=>{
+      setTempoData({ ...tempoData, message: "" });
       setForm(prevState => ({
         ...prevState,
         email: value.target.value
@@ -62,14 +51,21 @@ function Login(props){
     }
 
     const passwordOnChange=(value)=>{
-        setForm(prevState => ({
-          ...prevState,
-          password: value.target.value
-        }));
+      setTempoData({ ...tempoData, message: "" });
+      setForm(prevState => ({
+        ...prevState,
+        password: value.target.value
+      }));
     }
 
     const Login=()=>{
-      if(form.email && form.password){
+      setTempoData({ ...tempoData, message: "" });
+      const formValid = simpleValidator.current.allValid()
+      if (!formValid) {
+        simpleValidator.current.showMessages()
+        forceUpdate(1)
+      }
+      else{
         Action.LoginAction(form)
       }
     }
@@ -79,10 +75,22 @@ function Login(props){
         <div className="form">
             <input placeholder='email' onChange={emailOnChange} className="inputBox" type="text" value={form.email}/>
             <br/>
+            {simpleValidator.current.message('email', form.email, 'required|email') ?
+              <div>
+                <p className='text'>{simpleValidator.current.message('email', form.email, 'required|email') }</p>
+              </div>
+              :
+              <br/>
+            }
+            <input placeholder='password' onChange={passwordOnChange} className="inputBox" type="password" value={form.password}/>
             <br/>
-            <input placeholder='password' onChange={passwordOnChange} className="inputBox" type="text" value={form.password}/>
-            <br/>
-            <br/>
+            {simpleValidator.current.message('password', form.password, 'required') ?
+              <div>
+                <p className='text'>{simpleValidator.current.message('password', form.password, 'required') }</p>
+              </div>
+              :
+              <br/>
+            }
             {tempoData.loading ?
               <button className='postActionButton'>Loading</button>               
               :

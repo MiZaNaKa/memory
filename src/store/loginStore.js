@@ -6,9 +6,7 @@ import { Store } from 'flux/utils';
 class LoginStore extends Store {
     constructor() {
         super(dispatcher);
-        this.created=false
         this.detail={
-           
             "email" : "",
             "password" : "",
         }
@@ -20,9 +18,7 @@ class LoginStore extends Store {
         
     }
     clearAll=()=>{
-        this.created=false
         this.detail={
-           
             "email" : "",
             "password" : "",
         }
@@ -43,9 +39,7 @@ class LoginStore extends Store {
         return this.detail
     }
 
-    getCreated=()=>{
-        return this.created
-    }
+    
 
     __onDispatch = async (action) => {
        

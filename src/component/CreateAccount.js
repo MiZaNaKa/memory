@@ -1,42 +1,38 @@
 import React, {  useEffect,useState,useRef } from 'react';
 import Header from "./Header"
+import loginHelper from '../jwtHelper/jwtHelper'
 import Action from '../action/CreateAccountAction'
 import Store from '../store/CreateAccountStore'
 import withNavigateHook from '../common/Navigate'
 import '../commonStyle/commonStyle.css'
 import SimpleReactValidator from 'simple-react-validator';
-import { Bars } from 'react-loading-icons'
-import Load from "../img/loading.gif"
-
-import Modal from 'react-modal';
-
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-  },
-};
 
 
 function CreateAccount(props){
-    // Store.clearAll()
+    
     var detail=Store.getDetail()
     var tempoDataAll=Store.getTempoData()
-
-    
-    const[userInfo,setUserInfo]=useState(false)
     const[form,setForm]=useState(detail)
     const[tempoData,setTempoData]=useState(tempoDataAll)
     const simpleValidator = useRef(new SimpleReactValidator());
     const [, forceUpdate] = useState();
+    const[passwordMatch,setPasswordMatch]=useState(false)
 
     useEffect(() => {
       Store.addListener(onStoreChange)
     }, []);
+
+    useEffect(() => {
+      Store.addListener(onStoreChange)
+      const getUserInfo = async () => {
+        const data = await loginHelper.UserInfo()
+        if(data){
+          props.navigation('/')
+        }
+      }
+      getUserInfo()
+        .catch(console.error);
+    }, [])
 
     const onStoreChange = () => {
       var tempoDataAll=Store.getTempoData()  
@@ -75,7 +71,14 @@ function CreateAccount(props){
     }
 
     const createAccountAPI=()=>{
-      Action.createAccountAPI(form)
+      if(form.password===form.retypePassword){
+        setPasswordMatch(false)
+        Action.createAccountAPI(form)
+      }
+      else{
+        setPasswordMatch(true)
+      }
+      
     }
 
     const getOtpForCreateAcc=()=>{
@@ -85,7 +88,13 @@ function CreateAccount(props){
         forceUpdate(1)
       }
       else{
-        Action.getOtpForCreateAcc(form.email)
+        if(form.password===form.retypePassword){
+          setPasswordMatch(false)
+          Action.getOtpForCreateAcc(form.email)
+        }
+        else{
+          setPasswordMatch(true)
+        }
       }
     }
 
@@ -141,14 +150,18 @@ function CreateAccount(props){
             <br/>
             {simpleValidator.current.message('retypePassword', form.retypePassword, 'required') ?
               <div>
-                <p className='text'>
-                  {/* {simpleValidator.message('retypePassword', form.retypePassword, `required|in:${form.password}`, {messages: {in: 'Passwords need to match!'}})}
-                  {simpleValidator.message('retypePassword', form.retypePassword, `required|in:${form.password}`, {messages: {in: 'Passwords need to match!'}})} */}
-                  {/* {simpleValidator.message('retypePassword', form.retypePassword, 'required|in:${form.password}') } */}
-                </p>
+                <p className='text'>{simpleValidator.current.message('retypePassword', form.retypePassword, 'required') }</p>
               </div>
               :
               <br/>
+            }
+
+            {passwordMatch ?
+              <div>
+                <p className='text'>Password is not match</p>
+              </div>
+              :
+              null
             }
 
 

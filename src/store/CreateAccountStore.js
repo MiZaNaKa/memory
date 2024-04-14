@@ -6,7 +6,6 @@ import { Store } from 'flux/utils';
 class CreateAccountStore extends Store {
     constructor() {
         super(dispatcher);
-        this.created=false
         this.detail={
             "name":"",
             "email" : "",
@@ -23,11 +22,11 @@ class CreateAccountStore extends Store {
         
     }
     clearAll=()=>{
-        this.created=false
         this.detail={
             "name":"",
             "email" : "",
             "password" : "",
+            "retypePassword":""
             
         }
         this.tempoData={
@@ -48,9 +47,7 @@ class CreateAccountStore extends Store {
         return this.detail
     }
 
-    getCreated=()=>{
-        return this.created
-    }
+    
 
     __onDispatch = async (action) => {
        

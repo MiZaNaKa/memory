@@ -18,6 +18,7 @@ import Home from "./component/Home"
 import PrivateRoute from "./component/auth/PrivateRoute";
 import PagenotFound from "./component/PagenotFound/PageNotFound";
 import CreateAccount from "./component/CreateAccount"
+import Noti from "./component/noti"
 
 // import "./App.css";
 // import "./css/style.css"
@@ -47,6 +48,7 @@ class App extends Component {
               <Route exact  path="/StoryDetail/:id" element={<PrivateRoute Component={StoryDetail} />} />
               <Route exact  path="/MyStoryList" element={<PrivateRoute Component={StoryAll} />} />
               <Route exact  path="/CreateAccount" element={<CreateAccount/>} />
+              <Route exact  path="/Noti" element={<Noti/>} />
 
               
               <Route
