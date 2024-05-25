@@ -7,7 +7,7 @@ const App = () => {
       <div className="App">
          
          <div style={{marginTop:150}}>
-            <p>Home Khin Khin Thant</p>
+            <p>Testing From KKT</p>
          </div>
          
       </div>

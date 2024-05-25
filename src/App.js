@@ -19,7 +19,7 @@ import PrivateRoute from "./component/auth/PrivateRoute";
 import PagenotFound from "./component/PagenotFound/PageNotFound";
 import CreateAccount from "./component/CreateAccount"
 import Noti from "./component/noti"
-
+// import Test from "./component/test"
 // import "./App.css";
 // import "./css/style.css"
  
@@ -40,7 +40,7 @@ class App extends Component {
           <div>
 
             <Routes>
-              <Route  path="/" element={<Story />}/>
+              <Route  path="/" element={<Noti />}/>
               <Route path="/PostStory" element={<PrivateRoute Component={PostStory} />} />
               <Route exact path="/PostStory/:id" element={<PrivateRoute Component={PostStory} />} />
               <Route exact  path="/SuccessfullyLogin/:id" element={<SuccessfullyLogin/>} />
@@ -49,6 +49,7 @@ class App extends Component {
               <Route exact  path="/MyStoryList" element={<PrivateRoute Component={StoryAll} />} />
               <Route exact  path="/CreateAccount" element={<CreateAccount/>} />
               <Route exact  path="/Noti" element={<Noti/>} />
+              {/* <Route exact  path="/Test" element={<Test/>} /> */}
 
               
               <Route
